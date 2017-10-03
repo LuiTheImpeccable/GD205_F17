@@ -8,14 +8,15 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody rb;
 	public AudioClip impact;
 	AudioSource audioSource;
-
-    //
+	private Vector3 resetPlayer; // variable that resets player position
+	/// </summary>
     public float speed;
 
     void Start ()
     {
         rb = GetComponent<Rigidbody>();
 
+		resetPlayer = transform.position; 
     }
 
 	
@@ -29,5 +30,14 @@ public class PlayerController : MonoBehaviour {
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
         rb.AddForce (movement * speed);
+
+		if (Input.GetKeyDown (KeyCode.R)) {
+
+			transform.position = resetPlayer; 
+
+		}
+
+
+
 	}
 }
